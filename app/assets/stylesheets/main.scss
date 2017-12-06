@@ -1,0 +1,284 @@
+//Bootstrap Modifications
+@import "vendor/waves";
+
+$footer-height: 96px;
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  padding-bottom: $footer-height;
+}
+
+.footer {
+  height: $footer-height;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+//!!== //Sticky footer
+.btn {
+  outline: none !important;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+  &:hover {
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
+  }
+  @extend .waves-effect;
+  @extend .waves-light;
+  @extend .waves-button;
+  border-radius: 50px;
+  &-md {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+  }
+  &-lg {
+    font-size: $font-size-base;
+    text-transform: uppercase;
+    padding: 13px 5rem;
+  }
+  &-default {
+    &:hover,
+    &:active {
+      border-color: $brand-primary;
+      background: $brand-primary;
+      color: white;
+    }
+  }
+}
+
+.navbar-default {
+  position: relative;
+  z-index: 3;
+  .dropdown-menu {
+    padding: 0;
+    li {
+      a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-image: url(image_path('gradient.png'));
+        background-position: center;
+        background-size: cover;
+        &:hover {
+          background-image: none;
+        }
+      }
+    }
+  }
+  .btn {
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: $brand-danger;
+      color: white;
+    }
+    color: $brand-primary;
+  }
+  .btn-lg {
+    margin-top: .8rem;
+  }
+}
+
+.emoji-wysiwyg-editor {
+  &:focus,
+  &:active {
+    outline: none !important;
+  }
+}
+
+textarea {
+  resize: none;
+}
+//Utils
+.bold {
+  font-weight: 700;
+}
+
+.absolute {
+  position: absolute;
+  &-h-c {
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  &-v-c {
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  &-c {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.relative {
+  position: relative;
+}
+
+.width {
+  &__100 {
+    width: 100%;
+  }
+  &__50 {
+    width: 50%;
+  }
+  &__75 {
+    width: 75%;
+  }
+}
+
+.text {
+  &-lighten {
+    color: #bebebe;
+  }
+  &-white {
+    color: white;
+  }
+}
+
+.align {
+  &-v-middle {
+    vertical-align: middle;
+  }
+  &-v-sub {
+    vertical-align: sub;
+  }
+}
+
+.inline-flex {
+  display: inline-flex;
+  align-items: center;
+}
+
+.js-click-date_picker {
+  background-color: white !important;
+}
+
+.link-text {
+  color: $text-color !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+.text {
+  &-center-xs {
+    @media all and (max-width: $screen-sm-min) {
+      text-align: center;
+    }
+  }
+
+  &-left-xs {
+    @media all and (max-width: $screen-sm-min) {
+      text-align: left;
+    }
+  }
+}
+
+.text-lowercase {
+  text-transform: lowercase !important;
+}
+
+.xs {
+  &-p-0 {
+    @media all and (max-width: $screen-xs-min) {
+      padding: 0;
+    }
+  }
+}
+
+.bg {
+  &-white {
+    background-color: white !important;
+  }
+}
+
+.display {
+  &-block {
+    display: block;
+  }
+  &-inline-b {
+    display: inline-block;
+  }
+}
+
+.text {
+  &-large {
+    font-size: $font-size-large !important;
+  }
+}
+.emoji-align {
+  &-super {
+    .emoji-image {
+      vertical-align: super;
+    }
+  }
+}
+
+.text-xs-left { text-align: left; }
+.text-xs-right { text-align: right; }
+.text-xs-center { text-align: center; }
+.text-xs-justify { text-align: justify; }
+
+@media (min-width: 768px) {
+  .text-sm-left { text-align: left; }
+  .text-sm-right { text-align: right; }
+  .text-sm-center { text-align: center; }
+  .text-sm-justify { text-align: justify; }
+}
+
+@media (min-width: 992px) {
+  .text-md-left { text-align: left; }
+  .text-md-right { text-align: right; }
+  .text-md-center { text-align: center; }
+  .text-md-justify { text-align: justify; }
+}
+
+@media (min-width: 1200px) {
+  .text-lg-left { text-align: left; }
+  .text-lg-right { text-align: right; }
+  .text-lg-center { text-align: center; }
+  .text-lg-justify { text-align: justify; }
+}
+//Both
+
+.section-white {
+  padding: 10px 0;
+}
+
+.section-white {
+  background-color: #fff;
+  color: #555;
+}
+
+@media all and (min-width: 768px) {
+  .section-white {
+    padding: 1.5em 0;
+  }
+  .dropdown-toggle {
+    padding-bottom: 19px !important;
+  }
+}
+
+label.required {
+  &::after {
+    content: ' *'
+  }
+}
+
+
+.field_with_errors {
+  box-shadow: 0 0 2px 1px $brand-danger;
+  width: 100%;
+}
+
+.checkbox {
+  .field_with_errors {
+    box-shadow: 0 0 2px 1px #ff2d55;
+    display: inline-block;
+    padding: 1px 5px 0;
+    border-radius: 100%;
+  }
+}

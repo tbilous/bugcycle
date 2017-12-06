@@ -1,0 +1,43 @@
+en:
+  menu: 'Menu'
+  save: 'Save'
+  send: 'Send'
+  remove: 'Remove'
+  close: 'Close'
+  datepicker:
+    btn:
+      apply: 'Apply'
+      cancel: 'Cancel'
+    daysofweek:
+      su: 'Su'
+      mo: 'Mo'
+      tu: 'Tu'
+      we: 'We'
+      th: 'Th'
+      fr: 'Fr'
+      sa: 'Sa'
+    monthnames:
+      january: 'January'
+      february: 'February'
+      march: 'March'
+      april: 'April'
+      may: 'May'
+      june: 'June'
+      july: 'July'
+      august: 'August'
+      september: 'September'
+      october: 'October'
+      november: 'November'
+      december: 'December'
+    from: 'From'
+    to: 'To'
+    custom: 'Custom'
+    today: 'Today'
+    yesterday: 'Yesterday'
+    lastSeven: 'Last 7 days'
+    lastThirty: 'Last 30 days'
+    thisMonth: 'This month'
+    previousMonth: 'Previous month'
+  activerecord:
+    models:
+    attributes:

@@ -1,0 +1,9 @@
+:verbose: false
+:pidfile: ./tmp/pids/sidekiq-0.pid
+:logfile: ./log/sidekiq.log
+:concurrency: 1
+:queues:
+  - default
+  - pushing
+  - mailers
+  - chat
