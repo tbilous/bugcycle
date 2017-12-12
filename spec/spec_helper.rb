@@ -2,6 +2,7 @@ require 'rubygems'
 require 'database_cleaner'
 require 'capybara/rspec'
 require 'webmock/rspec'
+require 'paperclip/matchers'
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
@@ -30,6 +31,7 @@ RSpec.configure do |config|
   config.after(:suite) do
     FileUtils.rm_rf(Dir["#{Rails.root}/tmp/paperclip/"])
   end
+  config.include Paperclip::Shoulda::Matchers
   config.before(:each) do
     stub_request(:get, /admin.paysale.com/).to_return(body: 'OK', status: 200)
   end
