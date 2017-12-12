@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
-gem 'rails', '~> 5.1.2'
+gem 'rails', '5.1.4'
 gem 'sass-rails', '~> 5.0'
 # gem 'thor', '0.19.1'
 # Use Uglifier as compressor for JavaScript assets
