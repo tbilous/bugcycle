@@ -4,6 +4,17 @@ class ApplicationController < ActionController::Base
   respond_to :html
   protect_from_forgery with: :exception
 
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |format|
+      format.html { redirect_to root_path, alert: exception.message }
+      format.json do
+        render json: { error: t('cancancan.forbidden') }.to_json,
+               status: :forbidden
+      end
+      format.js { head :forbidden }
+    end
+  end
+
   protected
 
   def gon_user

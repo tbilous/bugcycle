@@ -22,6 +22,7 @@ gem 'redis', '~> 3.0'
 # my gems
 gem 'active_model_serializers', '0.10.7'
 gem 'bootstrap-sass', '3.3.7'
+gem 'cancancan', '2.1.2'
 gem 'devise', '4.3.0'
 gem 'devise-bootstrap-views', '0.0.11'
 gem 'devise-i18n', '1.4.0'

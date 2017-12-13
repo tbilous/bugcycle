@@ -1,6 +1,8 @@
 class CategoriesController < ApplicationController
   before_action :load_category, only: %i(update destroy show edit)
 
+  authorize_resource
+
   def create
     respond_with @category = current_user.categories.create(strong_params)
   end

@@ -74,6 +74,7 @@ GEM
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.10.0)
     byebug (9.1.0)
+    cancancan (2.1.2)
     capistrano (3.10.0)
       airbrussh (>= 1.0.0)
       i18n
@@ -456,6 +457,7 @@ DEPENDENCIES
   bootstrap-sass (= 3.3.7)
   bullet (= 5.7.0)
   byebug
+  cancancan (= 2.1.2)
   capistrano
   capistrano-bundler
   capistrano-linked-files

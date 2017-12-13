@@ -9,7 +9,7 @@
       .col-xs-8.col-sm-9
         .pt-2
           = @item.title
-  - if user_signed_in?
+  - if can? :modify, @item
     .panel-footer
       ul.list-inline
         li

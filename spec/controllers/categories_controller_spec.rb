@@ -13,10 +13,10 @@ RSpec.describe CategoriesController, type: :controller do
 
     subject { post :create, params: params }
 
-    # it_behaves_like 'when user is unauthorized' do
-    #   it { expect { subject }.to_not change(Question, :count) }
-    #   it { expect(subject).to redirect_to new_user_session_path }
-    # end
+    it_behaves_like 'when user is unauthorized' do
+      it { expect { subject }.to_not change(Category, :count) }
+      it { expect(subject).to redirect_to root_path }
+    end
 
     it_behaves_like 'when user is authorized' do
       it { expect { subject }.to change(Category, :count) }
@@ -48,10 +48,10 @@ RSpec.describe CategoriesController, type: :controller do
       category.reload
     end
 
-    # it_behaves_like 'when user is unauthorized' do
-    #   before { subject }
-    #   it { expect(category.title).to_not eql params[:category][:title] }
-    # end
+    it_behaves_like 'when user is unauthorized' do
+      before { subject }
+      it { expect(category.title).to_not eql params[:category][:title] }
+    end
 
     it_behaves_like 'when user is authorized' do
       before { subject }
@@ -71,10 +71,10 @@ RSpec.describe CategoriesController, type: :controller do
       delete :destroy, params: { id: category.id }
     end
 
-    # it_behaves_like 'when user is unauthorized' do
-    #   it {  expect { subject }.to_not change { Category.count } }
-    #   it { expect(subject).to redirect_to new_user_session_path }
-    # end
+    it_behaves_like 'when user is unauthorized' do
+      it { expect { subject }.to_not change { Category.count } }
+      it { expect(subject).to redirect_to root_path }
+    end
 
     it_behaves_like 'when user is authorized' do
       it { expect { subject }.to change { Category.count }.by(-1) }
@@ -108,14 +108,23 @@ RSpec.describe CategoriesController, type: :controller do
   end
 
   describe 'GET #new' do
-    before { get :new }
+    subject { get :new }
 
-    it 'assigns new category to @category' do
-      expect(assigns(:category)).to be_a_new(Category)
+    it_behaves_like 'when user is authorized' do
+      before {subject }
+
+      it 'assigns new category to @category' do
+        expect(assigns(:category)).to be_a_new(Category)
+      end
+
+      it 'renders the new template' do
+        expect(response).to render_template :new
+      end
     end
 
-    it 'renders the new template' do
-      expect(response).to render_template :new
+    it_behaves_like 'when user is unauthorized' do
+      before { subject }
+      it { expect(response).to redirect_to(root_path) }
     end
   end
 
@@ -136,9 +145,9 @@ RSpec.describe CategoriesController, type: :controller do
       it { expect(assigns(:category)).to eq category }
     end
 
-    # it_behaves_like 'when user is unauthorized' do
-    #   before { subject }
-    #   it { expect(response).to redirect_to(new_user_session_path) }
-    # end
+    it_behaves_like 'when user is unauthorized' do
+      before { subject }
+      it { expect(response).to redirect_to(root_path) }
+    end
   end
 end

@@ -15,10 +15,10 @@ RSpec.describe ItemsController, type: :controller do
 
     subject { post :create, params: params }
 
-    # it_behaves_like 'when user is unauthorized' do
-    #   it { expect { subject }.to_not change(Question, :count) }
-    #   it { expect(subject).to redirect_to new_user_session_path }
-    # end
+    it_behaves_like 'when user is unauthorized' do
+      it { expect { subject }.to_not change(Item, :count) }
+      it { expect(subject).to redirect_to root_path }
+    end
 
     it_behaves_like 'when user is authorized' do
       it { expect { subject }.to change(Item, :count) }
@@ -55,11 +55,11 @@ RSpec.describe ItemsController, type: :controller do
       item.reload
     end
 
-    # it_behaves_like 'when user is unauthorized' do
-    #   before { subject }
-    #   it { expect(category.title).to_not eql params[:item][:title] }
-    #   it { expect(category.title).to_not eql params[:item][:title] }
-    # end
+    it_behaves_like 'when user is unauthorized' do
+      before { subject }
+      it { expect(category.title).to_not eql params[:item][:title] }
+      it { expect(category.title).to_not eql params[:item][:title] }
+    end
 
     it_behaves_like 'when user is authorized' do
       before { subject }
@@ -85,10 +85,10 @@ RSpec.describe ItemsController, type: :controller do
       delete :destroy, params: { id: item.id }
     end
 
-    # it_behaves_like 'when user is unauthorized' do
-    #   it {  expect { subject }.to_not change { Category.count } }
-    #   it { expect(subject).to redirect_to new_user_session_path }
-    # end
+    it_behaves_like 'when user is unauthorized' do
+      it {  expect { subject }.to_not change { Item.count } }
+      it { expect(subject).to redirect_to root_path }
+    end
 
     it_behaves_like 'when user is authorized' do
       it { expect { subject }.to change { Item.count }.by(-1) }
@@ -122,14 +122,26 @@ RSpec.describe ItemsController, type: :controller do
   end
 
   describe 'GET #new' do
-    before { get :new, params: { category_id: category.id } }
+    subject { get :new, params: { category_id: category.id } }
 
-    it 'assigns new item to @item' do
-      expect(assigns(:item)).to be_a_new(Item)
+    it_behaves_like 'when user is authorized' do
+      before { subject }
+
+      it 'assigns new item to @item' do
+        expect(assigns(:item)).to be_a_new(Item)
+      end
+
+      it 'renders the new template' do
+        expect(response).to render_template :new
+      end
     end
 
-    it 'renders the new template' do
-      expect(response).to render_template :new
+    it_behaves_like 'when user is unauthorized' do
+      before { subject }
+
+      it 'renders the new template' do
+        expect(response).to redirect_to root_path
+      end
     end
   end
 
@@ -150,9 +162,9 @@ RSpec.describe ItemsController, type: :controller do
       it { expect(assigns(:item)).to eq item }
     end
 
-    # it_behaves_like 'when user is unauthorized' do
-    #   before { subject }
-    #   it { expect(response).to redirect_to(new_user_session_path) }
-    # end
+    it_behaves_like 'when user is unauthorized' do
+      before { subject }
+      it { expect(response).to redirect_to(root_path) }
+    end
   end
 end

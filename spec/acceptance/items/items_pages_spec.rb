@@ -80,4 +80,23 @@ feature 'New registration', %q{
       expect(page).to_not have_link t('edit')
     end
   end
+
+  context 'As user John', :js do
+    scenario 'I can`t edit destroy item created by user' do
+      visit_user(john)
+
+      click_on t('activerecord.models.category.other')
+      within '#CategoryNavGroup' do
+        click_on t('list')
+      end
+
+      click_on category.title
+      click_on item.title
+
+      expect(current_path).to eq item_path(item.id)
+
+      expect(page).to_not have_link t('delete')
+      expect(page).to_not have_link t('edit')
+    end
+  end
 end

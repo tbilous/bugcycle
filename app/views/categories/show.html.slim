@@ -2,7 +2,7 @@
 .panel.panel-default
   .panel-body
     p = @category.title
-  - if user_signed_in?
+  - if can? :modify, @category
     .panel-footer
       ul.list-inline
         li
@@ -10,7 +10,7 @@
         li
           = link_to t('delete'), category_path(@category.id), method: :delete, class: 'btn btn-sm btn-danger'
 
-- if user_signed_in?
+- if can? :modify, Item
   = link_to t('item.add'), new_category_item_path(@category.id), class: 'btn btn-lg btn-primary'
 hr
 - if @category.items.present?

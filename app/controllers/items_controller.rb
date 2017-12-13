@@ -2,6 +2,8 @@ class ItemsController < ApplicationController
   before_action :load_item, only: %i(update destroy show edit)
   before_action :load_category, only: %i(index new)
 
+  authorize_resource
+
   def create
     @category = Category.find(params[:category_id])
     respond_with @item = @category.items.create(strong_params.merge(user_id: current_user.id))
