@@ -7,6 +7,14 @@ en:
   sign_in: 'Sign In'
   sign_out: 'Logout'
   sign_up: 'Sign Up'
+  new: New
+  list: List
+  delete: Delete
+  edit: Edit
+  item:
+    one: bicycle
+    other: bicycles
+    add: Add bicycle
   datepicker:
     btn:
       apply: 'Apply'
@@ -43,6 +51,9 @@ en:
     previousMonth: 'Previous month'
   activerecord:
     models:
+      category:
+        one: Category
+        other: Categories
     attributes:
   categories:
     new:

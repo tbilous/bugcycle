@@ -3,12 +3,18 @@ nav.navbar.navbar-inverse
     .navbar-header
       = link_to app_name, root_path, class: 'navbar-brand'
     ul.nav.navbar-nav
-      li.active
-        a href="#"  Home
+      li.dropdown#CategoryNavGroup
+        a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+          = t('activerecord.models.category.other')
+          span.caret
+        ul.dropdown-menu
+          - if user_signed_in?
+            li
+              = nav_link(t('new'), new_category_path)
+          li
+            = nav_link(t('list'), categories_path)
       li
         a href="#"  Page 1
-      li
-        a href="#"  Page 2
     - if user_signed_in?
       ul.nav.navbar-nav.navbar-right
         li

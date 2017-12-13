@@ -17,6 +17,7 @@ module FeatureMacros
 
   def visit_user(user)
     login_as(user)
+    visit root_path
     # visit question_path(question)
   end
 

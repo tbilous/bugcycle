@@ -1,0 +1,6 @@
+= items.each do |i|
+  .panel.panel-default
+    .panel-heading
+      = link_to i.title, item_path(i.id)
+    .panel-body
+      = i.description

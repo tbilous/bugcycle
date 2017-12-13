@@ -1,0 +1,5 @@
+= form_for @category do |f|
+  .form-group
+    = f.text_field :title, class: 'form-control'
+  .form-group
+    = f.button t('save'), class: 'btn btn-primary btn-sm'
