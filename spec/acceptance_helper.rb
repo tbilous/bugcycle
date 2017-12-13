@@ -5,7 +5,6 @@ require 'capybara/email/rspec'
 require 'i18n'
 require 'capybara/webkit'
 
-
 RSpec.configure do |config|
   include ActionView::RecordIdentifier
   config.include AcceptanceHelper, type: :feature

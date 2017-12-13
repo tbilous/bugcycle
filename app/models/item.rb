@@ -1,5 +1,4 @@
 class Item < ApplicationRecord
-
   has_attached_file :picture,
                     default_url: '/images/:style/no_picture.png',
                     styles: { medium: '300x200#',
