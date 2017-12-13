@@ -5,5 +5,6 @@ FactoryBot.define do
 
   factory :user do
     email
+    password 'a' * 8
   end
 end

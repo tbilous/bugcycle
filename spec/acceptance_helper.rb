@@ -3,9 +3,8 @@ require 'rack_session_access/capybara'
 require 'puma'
 require 'capybara/email/rspec'
 require 'i18n'
-require 'capybara/poltergeist'
 require 'capybara/webkit'
-require 'selenium-webdriver'
+
 
 RSpec.configure do |config|
   include ActionView::RecordIdentifier
@@ -22,33 +21,13 @@ RSpec.configure do |config|
   Capybara.save_path = './tmp/capybara_output'
   Capybara.always_include_port = true # for correct app_host
 
-  # Capybara.register_driver :poltergeist do |app|
-  #   # noinspection RubyArgCount
-  #   Capybara::Poltergeist::Driver.new(
-  #     app,
-  #     timeout: 90,
-  #     js_errors: true,
-  #     phantomjs_logger: Logger.new(STDOUT),
-  #     window_size: [1380, 2000]
-  #   )
-  # end
-  # Capybara.register_driver :selenium do |app|
-  #   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-  #     chromeOptions: { args: %w[window-size=2500,2500] }
-  #   )
-  #
-  #   Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: capabilities)
-  # end
-
-  # Capybara.javascript_driver = :poltergeist
-  # Capybara.javascript_driver = :selenium
   Capybara.javascript_driver = :webkit
 
-  Capybara::Webkit.configure do |webkit|
-    webkit.allow_url('10.0.2.15')
-    webkit.allow_url('fonts.googleapis.com')
-    webkit.allow_url('maxcdn.bootstrapcdn.com')
-  end
+  # Capybara::Webkit.configure do |webkit|
+  #   webkit.allow_url('10.0.2.15')
+  #   webkit.allow_url('fonts.googleapis.com')
+  #   webkit.allow_url('maxcdn.bootstrapcdn.com')
+  # end
 
   Capybara.server = :puma
 
