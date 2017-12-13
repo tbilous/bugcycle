@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :user
 
-  validates_presence_of :title, :description
+  validates_presence_of :title, :description, :picture
   validates :title, uniqueness: { case_sensitive: false }
   validates_attachment :picture,
                        content_type: { content_type: %w(image/jpg image/jpeg image/png image/gif) }

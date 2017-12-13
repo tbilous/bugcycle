@@ -1,0 +1,15 @@
+= form_for [@category, @item], html: { multipart: true } do |f|
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: 'form-control', required: true
+  .form-group
+    = f.label :description
+    = f.text_field :description, class: 'form-control', required: true
+  .form-group
+    .pb-1
+      - if @item.picture.exists?
+        = image_tag image_path(@item.picture.url(:thumb))
+    = f.label :picture
+    = f.file_field :picture, class: 'form-control'
+  .form-group
+    = f.button t('save'), class: 'btn btn-primary btn-sm'

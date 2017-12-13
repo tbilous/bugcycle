@@ -64,3 +64,13 @@ en:
       title: 'Edit Category'
     index:
       title: 'Categories'
+  items:
+    new:
+      title: 'New Bicycle'
+    show:
+      title: 'Bicycle'
+    edit:
+      title: 'Edit Bicycle'
+    index:
+      title: 'Bicycles'
+

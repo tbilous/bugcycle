@@ -11,8 +11,8 @@
           = link_to t('delete'), category_path(@category.id), method: :delete, class: 'btn btn-sm btn-danger'
 
 - if user_signed_in?
-  = link_to t('item.add'), category_items_path(@category.id), class: 'btn btn-lg btn-primary'
+  = link_to t('item.add'), new_category_item_path(@category.id), class: 'btn btn-lg btn-primary'
 hr
 - if @category.items.present?
-  h3.capitalize = t('item', count: @category.items.count)
+  h3.text-capitalize = t('item', count: @category.items.count)
   = render 'items/list', items: @category.items if @category.items.present?
