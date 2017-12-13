@@ -86,7 +86,7 @@ RSpec.describe ItemsController, type: :controller do
     end
 
     it_behaves_like 'when user is unauthorized' do
-      it {  expect { subject }.to_not change { Item.count } }
+      it { expect { subject }.to_not change(Item, :count) }
       it { expect(subject).to redirect_to root_path }
     end
 

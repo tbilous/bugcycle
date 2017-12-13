@@ -27,7 +27,7 @@ feature 'New registration', %q{
       end
 
       click_on category.title
-      click_on  t('item.add')
+      click_on t('item.add')
 
       within '#new_item' do
         fill_in 'item_title', with: 'My awesome item'

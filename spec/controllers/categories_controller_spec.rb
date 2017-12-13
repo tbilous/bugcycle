@@ -72,7 +72,7 @@ RSpec.describe CategoriesController, type: :controller do
     end
 
     it_behaves_like 'when user is unauthorized' do
-      it { expect { subject }.to_not change { Category.count } }
+      it { expect { subject }.to_not change(Category, :count) }
       it { expect(subject).to redirect_to root_path }
     end
 
@@ -111,7 +111,7 @@ RSpec.describe CategoriesController, type: :controller do
     subject { get :new }
 
     it_behaves_like 'when user is authorized' do
-      before {subject }
+      before { subject }
 
       it 'assigns new category to @category' do
         expect(assigns(:category)).to be_a_new(Category)
