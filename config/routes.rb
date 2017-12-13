@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
-  resources :categories
+  resources :categories do
+    resources :items, shallow: true
+  end
   resources :home, only: :index
 
   authenticated :user do
