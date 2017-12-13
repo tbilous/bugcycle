@@ -100,4 +100,17 @@ module ApplicationHelper
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
+
+  def app_name
+    Rails.application.class.parent_name.underscore.humanize.split.map(&:capitalize).join(' ')
+  end
+
+  def full_title(page_title)
+    base_title = app_name
+    if page_title.empty?
+      base_title
+    else
+      "#{base_title} #{page_title}"
+    end
+  end
 end

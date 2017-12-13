@@ -4,6 +4,9 @@ en:
   send: 'Send'
   remove: 'Remove'
   close: 'Close'
+  sign_in: 'Sign In'
+  sign_out: 'Logout'
+  sign_up: 'Sign Up'
   datepicker:
     btn:
       apply: 'Apply'
@@ -41,3 +44,12 @@ en:
   activerecord:
     models:
     attributes:
+  categories:
+    new:
+      title: 'New Category'
+    show:
+      title: 'Category'
+    edit:
+      title: 'Edit Category'
+    index:
+      title: 'Categories'
