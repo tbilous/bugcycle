@@ -75,4 +75,8 @@ en:
       title: 'Edit Bicycle'
     index:
       title: 'Bicycles'
-
+  searches:
+    search:
+      title: Search
+    error: 'Search error'
+    no_found: 'No searches found'

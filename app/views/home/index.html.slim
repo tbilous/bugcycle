@@ -1,2 +1,6 @@
+= form_tag search_path,  method: :get, id: 'searchForm', data: {remote: true, type: :json } do
+  = text_field_tag :text
+  = text_field_tag :category_id
+  = submit_tag 'Submit'
 
-
+= content_tag :div, nil, id: 'searchData', class: 'mt-2 pt-2 pb-2'

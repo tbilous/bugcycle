@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
+  get '/search', to: 'searches#search'
+
   resources :categories do
     resources :items, shallow: true
   end

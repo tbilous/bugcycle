@@ -11,4 +11,25 @@ class Item < ApplicationRecord
   validates :title, uniqueness: { case_sensitive: false }
   validates_attachment :picture,
                        content_type: { content_type: %w(image/jpg image/jpeg image/png image/gif) }
+
+  scope :things_of_other, ->(user_id) { where.not(user_id: user_id) }
+  scope :with_category, ->(category_id) { where(category_id: category_id) }
+
+  def self.text_search(query)
+    where(['LOWER(title) ilike :query',
+           'LOWER(description) ilike :query'].join(' OR '), query: "%#{query}%")
+  end
+
+  def self.search(query)
+    search_params = {
+      category_id: :with_category,
+      text: :text_search
+    }
+
+    result = where(nil)
+    search_params.each do |k, v|
+      result = result.send(v, query[k]) if query[k].present?
+    end
+    result
+  end
 end

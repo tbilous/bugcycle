@@ -10,8 +10,9 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
+
 //= require jquery3
+//= require rails-ujs
 //= require bootstrap-sprockets
 //= require handlebars
 //= require 'moment'
@@ -19,3 +20,5 @@
 //= require i18n/translations
 //= require_tree ./shared
 //= require_tree ./vendor
+//= require_tree ./templates
+//= require searches

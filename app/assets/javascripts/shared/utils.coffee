@@ -43,25 +43,6 @@ App.utils =
   render: (template, data) ->
     JST[template](data)
 
-  toaster: (html, position, time) ->
-    $.toast
-      text: html
-#      heading: 'Note'
-      showHideTransition: 'slide'
-      allowToastClose: true
-      hideAfter: time
-      stack: 5
-      position: position
-      bgColor: 'rgba(82, 80, 121, 0.5)'
-      textColor: '#eeeeee'
-      textAlign: 'left'
-      loader: true
-      loaderBg: '#9EC600'
-      beforeShow: ->
-      afterShown: ->
-      beforeHide: ->
-      afterHidden: ->
-
 $ ->
   App.utils.successMessage(App.flash?.success)
   App.utils.errorMessage(App.flash?.error)
