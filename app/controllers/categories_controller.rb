@@ -21,6 +21,8 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    # @items = @category.items.page params[:page]
+    @items = Kaminari.paginate_array(@category.items).page(params[:page]).per(10)
     respond_with @category
   end
 

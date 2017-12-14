@@ -1,7 +1,0 @@
-= items.each do |i|
-  .panel.panel-default
-    .panel-heading
-      = link_to i.title, item_path(i.id)
-    .panel-body
-      = image_tag image_path(i.picture.url(:thumb))
-      span.ml-2 = i.description

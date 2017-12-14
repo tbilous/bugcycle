@@ -13,6 +13,8 @@
 - if can? :modify, Item
   = link_to t('item.add'), new_category_item_path(@category.id), class: 'btn btn-lg btn-primary'
 hr
-- if @category.items.present?
+- if @items.present?
   h3.text-capitalize = t('item', count: @category.items.count)
-  = render 'items/list', items: @category.items if @category.items.present?
+  /= render 'items/list', items: @category.items if @category.items.present?
+  = render @items
+  = paginate @items

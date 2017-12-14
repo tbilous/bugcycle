@@ -1,4 +1,6 @@
 = render 'layouts/shared/title', title: t('.title')
-.list-group
-  - @items.each do |i|
-    .list-group-item id="ListItemID_#{i.id}" = link_to i.title, category_path(i.id)
+/.list-group
+/  - @items.each do |i|
+/    .list-group-item id="ListItemID_#{i.id}" = link_to i.title, category_path(i.id)
+
+= render @items

@@ -1,0 +1,7 @@
+.panel.panel-default
+  .panel-heading
+    = link_to item.title, item_path(item.id)
+  .panel-body
+    = image_tag image_path(item.picture.url(:thumb))
+    span.ml-2 = item.description
+  .panel-footer
