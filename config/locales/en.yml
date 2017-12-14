@@ -12,6 +12,8 @@ en:
   list: 'List'
   delete: 'Delete'
   edit: 'Edit'
+  add_blacklist: 'Hide from search'
+  remove_blacklist: 'Show in search'
   item:
     one: 'bicycle'
     other: 'bicycles'

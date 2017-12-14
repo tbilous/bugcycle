@@ -19,7 +19,7 @@ $(document).ready ->
         url: $(el).attr('action'),
         data: $(el).serialize(),
         success:(data) ->
-          console.log data
+#          console.log data
           handleData(data)
           return false
         error:(data) ->
@@ -31,6 +31,7 @@ $(document).ready ->
       $('.search-grid').detach()
 
       if data.length > 0
+        $('.paginationjs-pages').detach()
         $(dataContainer).pagination
           dataSource: data
           pageSize: 10
@@ -44,7 +45,7 @@ $(document).ready ->
           for i in data
             renderData(i)
       else
-        $('J-paginationjs-page').detach()
+        $('.paginationjs-pages').detach()
         App.utils.errorMessage(I18n.t('searches.no_found'))
 
     clearData = (el) ->

@@ -22,3 +22,4 @@
 //= require_tree ./vendor
 //= require_tree ./templates
 //= require searches
+//= require black_lists

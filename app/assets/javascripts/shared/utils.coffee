@@ -3,6 +3,9 @@ App = window.App = {}
 #= require_tree ./templates
 
 # Handlebars helpers
+Handlebars.registerHelper 'i18n_t', (a) ->
+  I18n.t(a)
+
 Handlebars.registerHelper 'if_eq', (a, b, opts) ->
   if a == b
     opts.fn this

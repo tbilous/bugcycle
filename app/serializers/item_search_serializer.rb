@@ -1,5 +1,5 @@
 class ItemSearchSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :category, :image_medium, :image_thumb
+  attributes :id, :title, :description, :category, :image_medium, :image_thumb, :filter, :user_id
 
   def category
     object.category.title
@@ -11,5 +11,9 @@ class ItemSearchSerializer < ActiveModel::Serializer
 
   def image_thumb
     object.picture.url(:thumb)
+  end
+
+  def filter
+    object.black_lists.present? ? object.black_lists.take.id : 0
   end
 end

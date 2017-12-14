@@ -6,7 +6,7 @@ class BlackListsController < ApplicationController
   def create
     success, error = @black_list = BlackList.add_to_blacklist(params[:item_id], current_user.id)
     if success
-      render json: { filter: success }.to_json
+      render json: { filter: error }.to_json
     else
       render json: { error: error }.to_json, status: :unprocessable_entity
     end

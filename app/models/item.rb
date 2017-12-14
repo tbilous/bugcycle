@@ -13,6 +13,7 @@ class Item < ApplicationRecord
   validates_attachment :picture,
                        content_type: { content_type: %w(image/jpg image/jpeg image/png image/gif) }
 
+  scope :searchable, -> { where.not(id: BlackList.pluck(:item_id)) }
   scope :things_of_other, ->(user_id) { where.not(user_id: user_id) }
   scope :with_category, ->(category_id) { where(category_id: category_id) }
 

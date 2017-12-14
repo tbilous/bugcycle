@@ -1,4 +1,4 @@
-<div class="panel panel-default search-grid">
+<div class="panel panel-default search-grid" id="#searchGrid{{data.id}}">
   <div class="panel-heading">
     <a href="/items/{{data.id}}">{{data.title}}</a>
   </div>
@@ -8,5 +8,19 @@
       {{data.description}}
     </span>
   </div>
-  <div class="panel-footer"></div>
+  <div class="panel-footer">
+    <div class="js-filter-block">
+      {{#if_noeq data.filter 0}}
+        <a class="btn btn-success js-filter-off" id="searchShow{{data.id}}" data-type="json" data-remote="true"
+           rel="nofollow" data-item="{{data.id}}"
+           data-method="delete" href="/black_lists/{{data.filter}}">{{i18n_t 'remove_blacklist'}}</a>
+      {{/if_noeq}}
+
+      {{#if_eq data.filter 0}}
+        <a class="btn btn-warning js-filter-on" id="searchHide{{data.id}}" data-type="json"
+           data-remote="true" data-item="{{data.id}}"
+           rel="nofollow" data-method="post" href="/black_lists?item_id={{data.id}}">{{i18n_t 'add_blacklist'}}</a>
+      {{/if_eq}}
+    </div>
+  </div>
 </div>

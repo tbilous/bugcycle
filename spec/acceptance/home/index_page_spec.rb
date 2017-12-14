@@ -43,4 +43,31 @@ feature 'Home page', %q{
       expect(page).to have_link('2')
     end
   end
+  context 'As user', :js do
+    let!(:items) do
+      categories.each { |i| create_list(:item, 5, category_id: i.id, user_id: john.id) }
+    end
+    scenario 'add remove item to search filter' do
+      login_as user
+      visit category_path(Category.first.id)
+
+      first('.js-filter-on').trigger('click')
+
+      expect(page).to have_link(t('remove_blacklist'))
+      click_on t('remove_blacklist')
+      wait_animation
+      expect(page).to_not have_link(t('remove_blacklist'))
+      expect(page).to have_link(t('add_blacklist'))
+      first('.js-filter-on').trigger('click')
+
+      visit root_path
+
+      within '#searchForm' do
+        fill_in 'text', with: BlackList.first.item.title
+        find('#category_id').find(:xpath, 'option[1]').select_option
+      end
+      wait_animation
+      expect(page).to_not have_css('.search-grid')
+    end
+  end
 end
