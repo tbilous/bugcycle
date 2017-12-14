@@ -6,6 +6,7 @@ class Item < ApplicationRecord
 
   belongs_to :category
   belongs_to :user
+  has_many :black_lists, dependent: :destroy
 
   validates_presence_of :title, :description, :picture
   validates :title, uniqueness: { case_sensitive: false }

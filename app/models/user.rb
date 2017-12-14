@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :categories
   has_many :items
+  has_many :black_lists, dependent: :destroy
 
   def owner_of?(object)
     id == object.user_id
