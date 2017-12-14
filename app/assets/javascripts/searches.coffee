@@ -4,9 +4,29 @@
 $(document).ready ->
   el = '#searchForm'
   dataContainer = $('#searchData')
+
   if $('#searchData').length > 0
-    $(el).on 'ajax:success', (event) ->
-      [data, status, xhr] = event.detail
+
+    $('.js-btn-submit').on 'click', ->
+      submitForm()
+
+    $('.js-select-submit').on 'change', ->
+      submitForm()
+
+    submitForm = () ->
+      $.ajax({
+        type: "GET",
+        url: $(el).attr('action'),
+        data: $(el).serialize(),
+        success:(data) ->
+          console.log data
+          handleData(data)
+          return false
+        error:(data) ->
+          App.utils.errorMessage(I18n.t('searches.error'))
+      })
+
+    handleData = (data) ->
       clearData(dataContainer)
       $('.search-grid').detach()
 
@@ -26,9 +46,6 @@ $(document).ready ->
       else
         $('J-paginationjs-page').detach()
         App.utils.errorMessage(I18n.t('searches.no_found'))
-
-    $(el).on 'ajax:error', (e, data, status, xhr) ->
-      App.utils.errorMessage(I18n.t('searches.error'))
 
     clearData = (el) ->
       $(el).each ->

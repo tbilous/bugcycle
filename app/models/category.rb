@@ -4,4 +4,10 @@ class Category < ApplicationRecord
 
   validates_presence_of :title
   validates :title, uniqueness: { case_sensitive: false }
+
+  def self.options_for_select
+    all.map do |category|
+      [category.title, category.id]
+    end
+  end
 end

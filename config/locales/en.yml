@@ -7,16 +7,17 @@ en:
   sign_in: 'Sign In'
   sign_out: 'Logout'
   sign_up: 'Sign Up'
-  new: New
-  list: List
-  delete: Delete
-  edit: Edit
+  search: 'Search'
+  new: 'New'
+  list: 'List'
+  delete: 'Delete'
+  edit: 'Edit'
   item:
-    one: bicycle
-    other: bicycles
-    add: Add bicycle
+    one: 'bicycle'
+    other: 'bicycles'
+    add: 'Add bicycle'
   cancancan:
-    forbidden: You are not authorized to perform requested action
+    forbidden: 'You are not authorized to perform requested action'
   datepicker:
     btn:
       apply: 'Apply'
@@ -54,8 +55,8 @@ en:
   activerecord:
     models:
       category:
-        one: Category
-        other: Categories
+        one: 'Category'
+        other: 'Categories'
     attributes:
   categories:
     new:
@@ -77,6 +78,12 @@ en:
       title: 'Bicycles'
   searches:
     search:
-      title: Search
+      title: 'Search'
     error: 'Search error'
     no_found: 'No searches found'
+  home:
+    index:
+      title: 'Home'
+  search_form:
+    title: 'Select bicycle'
+    placeholder: 'Enter search term...'

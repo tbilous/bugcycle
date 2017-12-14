@@ -1,6 +1,14 @@
-= form_tag search_path,  method: :get, id: 'searchForm', data: {remote: true, type: :json } do
-  = text_field_tag :text
-  = text_field_tag :category_id
-  = submit_tag 'Submit'
-
+= render 'layouts/shared/title', title: t('.title')
+.panel.panel-default.devise-bs
+  .panel-heading
+    h3 = t('search_form.title')
+  .panel-body
+    = form_tag search_path(format: :json),  method: :get, id: 'searchForm', data: {remote: true, type: :json } do
+      .form-group
+        = text_field_tag :text, nil, placeholder: t('search_form.placeholder'),
+          class: 'js-select-submit form-control'
+      .form-group
+        = select_tag :category_id, options_for_select(Category.options_for_select),
+          multiple: true, size: Category.count,
+          class: 'js-select-submit form-control'
 = content_tag :div, nil, id: 'searchData', class: 'mt-2 pt-2 pb-2'
