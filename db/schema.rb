@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20171214125103) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id", "user_id"], name: "index_black_lists_on_item_id_and_user_id", unique: true
+    t.index ["item_id"], name: "index_black_lists_on_item_id"
   end
 
   create_table "categories", force: :cascade do |t|

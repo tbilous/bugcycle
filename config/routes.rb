@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   get '/search', to: 'searches#search'
 
+  resources :black_lists, only: %i(create destroy)
+
   resources :categories do
     resources :items, shallow: true
   end

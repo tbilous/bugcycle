@@ -19,12 +19,15 @@ RSpec.describe Ability, type: :model do
     let(:user_item) { create(:item, user_id: user.id, category_id: user_category.id) }
     let(:john_category) { create(:category, user_id: john.id) }
     let(:john_item) { create(:item, user_id: john.id, category_id: user_category.id) }
+    let(:user_black_list) { create(:black_list, user_id: user.id, item_id: john_item.id) }
+    let(:john_black_list) { create(:black_list, user_id: john.id, item_id: user_item.id) }
 
     it { should be_able_to :read, :all }
     it { should_not be_able_to :manage, :all }
 
     it { should be_able_to :create, Category }
     it { should be_able_to :create, Item }
+    it { should be_able_to :create, BlackList }
 
     context 'update' do
       it { should be_able_to :update, user_category }
@@ -37,7 +40,9 @@ RSpec.describe Ability, type: :model do
       it { should be_able_to :destroy, user_category }
       it { should be_able_to :destroy, john_category }
       it { should be_able_to :destroy, user_item }
+      it { should be_able_to :destroy, user_black_list }
       it { should_not be_able_to :destroy, john_item }
+      it { should_not be_able_to :destroy, john_black_list }
     end
 
     it { should be_able_to :me, User }

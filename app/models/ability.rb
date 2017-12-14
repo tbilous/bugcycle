@@ -16,7 +16,11 @@ class Ability
   def user_abilities
     guest_abilities
 
-    can :create, [Category, Item]
+    cannot :create, BlackList, item: { user_id: @user.id }
+
+    can :create, [Category, Item, BlackList]
+
+    can :modify, [BlackList], user_id: @user.id
 
     can :modify, [Category]
 

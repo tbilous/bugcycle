@@ -2,7 +2,7 @@ class CreateBlackLists < ActiveRecord::Migration[5.1]
   def change
     create_table :black_lists do |t|
       t.integer :user_id
-      t.integer :item_id
+      t.integer :item_id, index: true
 
       t.timestamps
     end
