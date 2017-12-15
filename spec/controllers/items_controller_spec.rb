@@ -57,8 +57,8 @@ RSpec.describe ItemsController, type: :controller do
 
     it_behaves_like 'when user is unauthorized' do
       before { subject }
-      it { expect(category.title).to_not eql params[:item][:title] }
-      it { expect(category.title).to_not eql params[:item][:title] }
+      it { expect(item.title).to_not eql params[:item][:title] }
+      it { expect(item.title).to_not eql params[:item][:description] }
     end
 
     it_behaves_like 'when user is authorized' do

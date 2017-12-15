@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Suggestion, type: :model do
   it { should belong_to(:user) }
   it { should belong_to(:item) }
-  it { should belong_to(:author).with_foreign_key(:author_id).class_name('User') }
   it { should belong_to(:category) }
   it { should validate_presence_of :title }
   it { should validate_presence_of :description }

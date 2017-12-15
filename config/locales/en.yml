@@ -60,6 +60,11 @@ en:
         one: 'Category'
         other: 'Categories'
     attributes:
+    errors:
+      models:
+        suggestion:
+          add_suggestion: 'You do not have permission for make suggestion'
+
   categories:
     new:
       title: 'New Category'

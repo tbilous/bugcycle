@@ -18,7 +18,9 @@ class Ability
 
     can :create, [Category, Item, BlackList, Suggestion]
 
-    can :modify, [Suggestion] do |object|
+    can :update, [Suggestion], user_id: @user.id
+
+    can :destroy, [Suggestion] do |object|
       object.user_id == @user.id || object.author_id == @user.id
     end
 

@@ -43,6 +43,7 @@ RSpec.describe Ability, type: :model do
       it { should be_able_to :update, john_category }
       it { should be_able_to :update, user_item }
       it { should_not be_able_to :update, john_item }
+      it { should_not be_able_to :update, bill_suggestion }
     end
 
     context 'destroy' do
