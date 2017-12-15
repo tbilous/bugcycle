@@ -57,6 +57,11 @@ RSpec.describe Ability, type: :model do
       it { should_not be_able_to :destroy, bill_suggestion }
     end
 
+    context 'apply' do
+      it { should be_able_to :apply, suggestion }
+      it { should_not be_able_to :apply, bill_suggestion }
+    end
+
     it { should be_able_to :me, User }
   end
 end

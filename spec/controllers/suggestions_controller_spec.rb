@@ -230,5 +230,102 @@ RSpec.describe SuggestionsController, type: :controller do
         it { expect(subject).to redirect_to root_path }
       end
     end
+
+    describe 'PUT #apply' do
+      let!(:user_suggestion) do
+        create(:suggestion, user_id: user.id,
+                            author_id: john_item.user_id,
+                            item_id: john_item.id,
+                            category_id: john_item.category.id,
+                            item_picture: john_item.picture.url(:original))
+      end
+
+      let!(:john_suggestion) do
+        create(:suggestion, user_id: john.id,
+                            author_id: item.user_id,
+                            item_id: item.id,
+                            category_id: item.category.id,
+                            item_picture: item.picture.url(:original))
+      end
+
+      let!(:bill_suggestion) do
+        create(:suggestion, user_id: bill.id,
+                            author_id: john_item.user_id,
+                            item_id: john_item.id,
+                            category_id: john_item.category.id,
+                            item_picture: john_item.picture.url(:original))
+      end
+
+      it_behaves_like 'when user is unauthorized' do
+        describe ' suggestion will not be destroyed' do
+          subject do
+            put :apply, params: { suggestion_id: user_suggestion.id }
+          end
+          it { expect { subject }.to_not change(Suggestion, :count) }
+          it { expect(subject).to redirect_to root_path }
+        end
+        describe 'item will not be updated when user is suggestion owner' do
+          before do
+            put :apply, params: { suggestion_id: user_suggestion.id }
+            john_item.reload
+          end
+          it { expect(john_item.title).to_not eql user_suggestion.title }
+          it { expect(john_item.description).to_not eql user_suggestion.title }
+        end
+      end
+
+      it_behaves_like 'when user is authorized' do
+        describe ' suggestion will not be destroyed when user is suggestion owner' do
+          subject do
+            put :apply, params: { suggestion_id: user_suggestion.id }
+          end
+          it { expect { subject }.to_not change(Suggestion, :count) }
+          it { expect(subject).to redirect_to root_path }
+        end
+
+        describe ' suggestion will be destroyed when user is item owner' do
+          subject do
+            put :apply, params: { suggestion_id: john_suggestion.id }
+          end
+          it { expect { subject }.to change(Suggestion, :count).by(-1) }
+          it { expect(subject).to redirect_to item_path(item.id) }
+        end
+
+        describe ' suggestion will be not destroyed when user is no item or suggestion owner' do
+          subject do
+            put :apply, params: { suggestion_id: bill_suggestion.id }
+          end
+          it { expect { subject }.to_not change(Suggestion, :count) }
+          it { expect(subject).to redirect_to root_path }
+        end
+
+        describe 'item will not be updated when user is suggestion owner' do
+          before do
+            put :apply, params: { suggestion_id: user_suggestion.id }
+            john_item.reload
+          end
+          it { expect(john_item.title).to_not eql user_suggestion.title }
+          it { expect(john_item.description).to_not eql user_suggestion.title }
+        end
+
+        describe 'item will be updated when user is item owner' do
+          before do
+            put :apply, params: { suggestion_id: john_suggestion.id }
+            john_item.reload
+          end
+          it { expect(john_item.title).to_not eql john_suggestion.title }
+          it { expect(john_item.description).to_not eql john_suggestion.title }
+        end
+
+        describe 'item will be not updated when user is no item or suggestion owner' do
+          before do
+            put :apply, params: { suggestion_id: bill_suggestion.id }
+            john_item.reload
+          end
+          it { expect(john_item.title).to_not eql bill_suggestion.title }
+          it { expect(john_item.description).to_not eql bill_suggestion.title }
+        end
+      end
+    end
   end
 end

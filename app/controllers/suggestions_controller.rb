@@ -32,6 +32,17 @@ class SuggestionsController < ApplicationController
     respond_with @suggestion
   end
 
+  def apply
+    @suggestion = Suggestion.find(params[:suggestion_id])
+    @item = Item.find(@suggestion.item_id)
+
+    if @item.user_id == current_user.id
+      respond_with @suggestion.apply, location: item_path(@item.id)
+    else
+      redirect_to root_path
+    end
+  end
+
   private
 
   def load_item

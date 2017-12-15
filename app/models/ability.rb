@@ -16,13 +16,17 @@ class Ability
   def user_abilities
     guest_abilities
 
-    can :create, [Category, Item, BlackList, Suggestion]
-
-    can :update, [Suggestion], user_id: @user.id
+    can :apply, [Suggestion] do |object|
+      object.author_id == @user.id
+    end
 
     can :destroy, [Suggestion] do |object|
       object.user_id == @user.id || object.author_id == @user.id
     end
+
+    can :create, [Category, Item, BlackList, Suggestion]
+
+    can :update, [Suggestion], user_id: @user.id
 
     can :modify, [BlackList], user_id: @user.id
 

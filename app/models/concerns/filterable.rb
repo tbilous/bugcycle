@@ -20,8 +20,8 @@ module Filterable
       send_response(error, filter)
     end
 
-    def self.send_response(error, filter)
-      error ? [false, error] : [true, filter]
+    def self.send_response(error, object)
+      error ? [false, error] : [true, object]
     end
   end
 end
