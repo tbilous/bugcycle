@@ -39,16 +39,16 @@ RSpec.describe Ability, type: :model do
     it { should be_able_to :create, Suggestion }
 
     context 'update' do
-      it { should be_able_to :update, user_category }
-      it { should be_able_to :update, john_category }
+      it { should_not be_able_to :update, user_category }
+      it { should_not be_able_to :update, john_category }
       it { should be_able_to :update, user_item }
       it { should_not be_able_to :update, john_item }
       it { should_not be_able_to :update, bill_suggestion }
     end
 
     context 'destroy' do
-      it { should be_able_to :destroy, user_category }
-      it { should be_able_to :destroy, john_category }
+      it { should_not be_able_to :destroy, user_category }
+      it { should_not be_able_to :destroy, john_category }
       it { should be_able_to :destroy, user_item }
       it { should be_able_to :destroy, user_black_list }
       it { should be_able_to :destroy, suggestion }

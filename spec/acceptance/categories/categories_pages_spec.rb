@@ -5,12 +5,10 @@ feature 'Categories', %q{
   As user
   I can to add category
   I do not to create category with the same name
-  I can to edit category
-  I can to delete category
   I can see categories list
   As quest
   I can see categories list
-  I can not make delete, edit, create actions
+  I can not delete, edit, create actions
 } do
 
   include_context 'users'
@@ -62,24 +60,6 @@ feature 'Categories', %q{
       click_on 'My awesome category'
 
       expect(current_path).to eq category_path(Category.find_by_title('My awesome category'))
-      click_on t('edit')
-
-      within 'form' do
-        fill_in 'category_title', with: 'My awesome category have changes'
-        click_on t('save')
-      end
-
-      expect(current_path).to eq category_path(Category.find_by_title('My awesome category have changes'))
-      wait_animation
-      expect(page).to have_content t('flash.actions.update.notice', resource_name: 'Category')
-
-      click_on t('delete')
-
-      expect(current_path).to eq categories_path
-      wait_animation
-      expect(page).to have_content t('flash.actions.destroy.notice', resource_name: 'Category')
-      expect(page).to_not have_content 'My awesome category'
-      expect(page).to_not have_content 'My awesome category have changes'
     end
   end
   context 'as guest', :js do

@@ -55,7 +55,7 @@ RSpec.describe CategoriesController, type: :controller do
 
     it_behaves_like 'when user is authorized' do
       before { subject }
-      it { expect(category.title).to eql params[:category][:title] }
+      it { expect(category.title).to_not eql params[:category][:title] }
 
       it_behaves_like 'invalid params concern', 'empty title', model: Category do
         let(:form_params) { { title: '' } }
@@ -77,8 +77,8 @@ RSpec.describe CategoriesController, type: :controller do
     end
 
     it_behaves_like 'when user is authorized' do
-      it { expect { subject }.to change { Category.count }.by(-1) }
-      it { expect(subject).to redirect_to categories_path }
+      it { expect { subject }.to_not change(Category, :count) }
+      it { expect(subject).to redirect_to root_path }
     end
   end
 
@@ -141,8 +141,7 @@ RSpec.describe CategoriesController, type: :controller do
 
     it_behaves_like 'when user is authorized' do
       before { subject }
-      it { expect(response).to render_template(:edit) }
-      it { expect(assigns(:category)).to eq category }
+      it { expect(response).to redirect_to(root_path) }
     end
 
     it_behaves_like 'when user is unauthorized' do
