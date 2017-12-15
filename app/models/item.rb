@@ -1,17 +1,19 @@
 class Item < ApplicationRecord
-  has_attached_file :picture,
-                    default_url: '/images/:style/no_picture.png',
-                    styles: { medium: '300x200#',
-                              thumb: '100x100#' }
+  include Pictureable
+  # has_attached_file :picture,
+  #                   default_url: '/images/:style/no_picture.png',
+  #                   styles: { medium: '300x200#',
+  #                             thumb: '100x100#' }
 
   belongs_to :category
   belongs_to :user
   has_many :black_lists, dependent: :destroy
+  has_many :suggestions, dependent: :destroy
 
   validates_presence_of :title, :description, :picture
   validates :title, uniqueness: { case_sensitive: false }
-  validates_attachment :picture,
-                       content_type: { content_type: %w(image/jpg image/jpeg image/png image/gif) }
+  # validates_attachment :picture,
+  #                      content_type: { content_type: %w(image/jpg image/jpeg image/png image/gif) }
 
   scope :searchable, -> { where.not(id: BlackList.pluck(:item_id)) }
   scope :things_of_other, ->(user_id) { where.not(user_id: user_id) }

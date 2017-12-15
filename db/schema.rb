@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171214125103) do
+ActiveRecord::Schema.define(version: 20171215064254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,24 @@ ActiveRecord::Schema.define(version: 20171214125103) do
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
+  create_table "suggestions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "item_id"
+    t.integer "author_id"
+    t.string "title"
+    t.string "description"
+    t.string "item_picture"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "picture_file_name"
+    t.string "picture_content_type"
+    t.integer "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.index ["author_id"], name: "index_suggestions_on_author_id"
+    t.index ["item_id"], name: "index_suggestions_on_item_id"
+    t.index ["user_id"], name: "index_suggestions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -67,4 +85,6 @@ ActiveRecord::Schema.define(version: 20171214125103) do
   add_foreign_key "categories", "users"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "users"
+  add_foreign_key "suggestions", "items"
+  add_foreign_key "suggestions", "users"
 end
