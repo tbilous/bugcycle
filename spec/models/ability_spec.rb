@@ -21,8 +21,14 @@ RSpec.describe Ability, type: :model do
     let(:john_item) { create(:item, user_id: john.id, category_id: user_category.id) }
     let(:user_black_list) { create(:black_list, user_id: user.id, item_id: john_item.id) }
     let(:john_black_list) { create(:black_list, user_id: john.id, item_id: user_item.id) }
-    let(:suggestion) { create(:suggestion, user_id: john.id, author_id: user.id, item_id: user_item.id) }
-    let(:bill_suggestion) { create(:suggestion, user_id: bill.id, author_id: john.id, item_id: john_item.id) }
+    let(:suggestion) do
+      create(:suggestion, user_id: john.id, author_id: user.id, item_id: user_item.id,
+                          category_id: user_item.category.id)
+    end
+    let(:bill_suggestion) do
+      create(:suggestion, user_id: bill.id, author_id: john.id, item_id: john_item.id,
+                          category_id: john_item.category.id)
+    end
 
     it { should be_able_to :read, :all }
     it { should_not be_able_to :manage, :all }

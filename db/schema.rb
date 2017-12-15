@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20171215064254) do
   create_table "suggestions", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "item_id"
+    t.integer "category_id"
     t.integer "author_id"
     t.string "title"
     t.string "description"
