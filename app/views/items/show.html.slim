@@ -16,3 +16,33 @@
           = link_to t('edit'), edit_item_path(@item.id), class: 'btn btn-sm btn-warning'
         li
           = link_to t('delete'), item_path(@item.id), method: :delete, class: 'btn btn-sm btn-danger'
+
+- if can? :create, Suggestion
+  - unless Suggestion.permitted?(user_id: current_user.id, item_id: @item.id) || current_user.owner_of?(@item)
+    hr
+    = link_to t('add_suggestion'), item_suggestions_path(@item.id), method: :post, class: 'btn btn-lg btn-primary'
+- if @item.suggestions.present?
+  h3 #{t('.suggestion_title')}:
+  - @item.suggestions.each do |i|
+    .panel.panel-default.suggestion-card id="suggestion#{i.id}"
+      .panel-heading
+        = i.description
+      .panel-body
+        .row
+          .col-xs-4.col-sm-3
+            - if i.picture.present?
+              = image_tag image_path(i.picture(:original)), class: 'img-responsive'
+            - else
+              = image_tag image_path(@item.picture(:original)), class: 'img-responsive'
+          .col-xs-8.col-sm-9
+            .pt-2
+              = i.title
+
+      .panel-footer
+        ul.list-inline
+          - if can? :apply, i
+            li
+              = link_to t('apply_suggestion'), suggestion_apply_path(i.id), method: :put, class: 'btn btn-sm btn-danger'
+          - if can? :destroy, i
+            li
+              = link_to t('delete_suggestion'), suggestion_path(i.id), method: :delete, class: 'btn btn-sm btn-warning'

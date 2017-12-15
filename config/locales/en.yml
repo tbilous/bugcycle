@@ -14,6 +14,9 @@ en:
   edit: 'Edit'
   add_blacklist: 'Hide from search'
   remove_blacklist: 'Show in search'
+  add_suggestion: 'Add suggestion'
+  apply_suggestion: 'Apply suggestion'
+  delete_suggestion: 'Delete suggestion'
   item:
     one: 'bicycle'
     other: 'bicycles'
@@ -79,6 +82,7 @@ en:
       title: 'New Bicycle'
     show:
       title: 'Bicycle'
+      suggestion_title: 'Suggestions'
     edit:
       title: 'Edit Bicycle'
     index:
@@ -91,6 +95,9 @@ en:
   home:
     index:
       title: 'Home'
+  suggestions:
+    edit:
+      title: 'Make suggestion bicycle'
   search_form:
     title: 'Select bicycle'
     placeholder: 'Enter search term...'

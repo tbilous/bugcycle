@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'acceptance_helper'
 
-feature 'New registration', %q{
+feature 'Categories', %q{
   As user
   I can to add category
   I do not to create category with the same name

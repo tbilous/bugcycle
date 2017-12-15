@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'acceptance_helper'
 
-feature 'New registration', %q{
+feature 'Bicycles', %q{
   As user
   I can to add item
   I do not to create item with the same name

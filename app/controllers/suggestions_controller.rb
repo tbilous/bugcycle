@@ -20,7 +20,7 @@ class SuggestionsController < ApplicationController
 
   def update
     @suggestion.update(strong_params)
-    respond_with @suggestion
+    respond_with @suggestion, location: item_path(@suggestion.item.id)
   end
 
   def destroy

@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'acceptance_helper'
 
-feature 'Home page', %q{
+feature 'Search', %q{
   As guest
   I want to find bicycle
   As user
