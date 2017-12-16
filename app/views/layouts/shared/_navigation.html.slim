@@ -8,7 +8,7 @@ nav.navbar.navbar-inverse
           = t('activerecord.models.category.other')
           span.caret
         ul.dropdown-menu
-          - if user_signed_in?
+          - if can? :create, Category
             li
               = nav_link(t('new'), new_category_path)
           li

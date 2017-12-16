@@ -30,8 +30,6 @@ class Ability
 
     can :modify, [BlackList], user_id: @user.id
 
-    # can :modify, [Category]
-
     can :modify, [Item], user_id: @user.id
 
     can :me, User

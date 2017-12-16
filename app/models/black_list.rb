@@ -1,4 +1,5 @@
 class BlackList < ApplicationRecord
+  include Responsable
   include Filterable
 
   belongs_to :user

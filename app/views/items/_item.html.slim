@@ -7,13 +7,13 @@
   .panel-footer
     - if can? :create, BlackList
       .js-filter-block
-        - if !BlackList.filter?(item.id, current_user.id) && !current_user.owner_of?(item)
+        - if !BlackList.permitted?(item_id: item.id, user_id: current_user.id) && !current_user.owner_of?(item)
           = link_to t('add_blacklist'), black_lists_path(item_id: item.id),
             method: :post, remote: true,
             class: 'btn btn-warning js-filter-on',
             id: "searchHide#{item.id}",
             data: {type: :json, item: item.id}
-        - if BlackList.filter?(item.id, current_user.id) && !current_user.owner_of?(item)
+        - if BlackList.permitted?(item_id: item.id, user_id: current_user.id) && !current_user.owner_of?(item)
           = link_to t('remove_blacklist'), black_list_path(item.black_lists.first.id),
             method: :delete, remote: true,
             class: 'btn btn-success js-filter-off',

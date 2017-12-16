@@ -2,10 +2,6 @@ module Suggestable
   extend ActiveSupport::Concern
 
   included do
-    def self.permitted?(args)
-      where(item_id: args[:item_id], user_id: args[:user_id]).present?
-    end
-
     def self.add_suggestion(args)
       item = Item.find(args[:item_id])
       error = nil
@@ -40,10 +36,6 @@ module Suggestable
       destroy!
 
       Suggestion.send_response(nil, @item)
-    end
-
-    def self.send_response(error, object)
-      error ? [false, error] : [true, object]
     end
   end
 end

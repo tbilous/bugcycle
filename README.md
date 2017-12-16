@@ -19,6 +19,4 @@
 `rake db:seed:categories`
 `rake db:seed:items`
 ### Notes
-* I have disable destroy/update rights on Category
-* Of course, this task need refactoring and not all things are optimally implemented, but unfortunately I'm limited in time. Sorry.
-
+* I'm ready to answer on the questions why I used a those or other solutions

@@ -26,7 +26,6 @@ gem 'cancancan', '2.1.2'
 gem 'devise', '4.3.0'
 gem 'devise-bootstrap-views', '0.0.11'
 gem 'devise-i18n', '1.4.0'
-gem 'font-awesome-rails', '4.7.0.2'
 gem 'gon', '6.2.0'
 gem 'i18n', '0.9.1'
 gem 'i18n-js', '3.0.2'
@@ -36,8 +35,6 @@ gem 'rails-i18n', '5.0.4'
 gem 'redis-namespace', '1.6.0'
 gem 'redis-rails', '5.0.2'
 gem 'rspec', '3.7.0'
-gem 'sidekiq', '5.0.5'
-gem 'sidekiq-status', '0.7.0'
 gem 'slim', '3.0.9'
 gem 'slim-rails', '3.1.3'
 gem 'sprockets', '3.7.1'
@@ -62,15 +59,6 @@ end
 
 group :development do
   gem 'bullet', '5.7.0'
-  gem 'capistrano', require: false
-  gem 'capistrano-bundler', require: false
-  gem 'capistrano-linked-files', require: false
-  gem 'capistrano-passenger', require: false
-  gem 'capistrano-rails', require: false
-  gem 'capistrano-rake', require: false
-  gem 'capistrano-rbenv', require: false
-  gem 'capistrano-sidekiq', require: false
-  gem 'capistrano3-puma', github: 'seuros/capistrano-puma', require: false
   gem 'letter_opener', '1.4.1'
   gem 'listen', '3.1.5'
   gem 'spring', '2.0.2'

@@ -1,6 +1,7 @@
 class Suggestion < ApplicationRecord
   include Pictureable
   include Suggestable
+  include Responsable
 
   belongs_to :user
   belongs_to :item
